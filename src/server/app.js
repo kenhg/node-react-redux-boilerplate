@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import config from './config'
+import serverRenderer from './ssr'
 
 const app = express()
 
@@ -18,5 +19,7 @@ app.use(bodyParser.json())
 
 // reserve /public to static files
 app.use('/public', express.static(path.join(__dirname, '../../public')))
+
+app.use(serverRenderer())
 
 export default app
