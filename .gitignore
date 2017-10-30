@@ -1,0 +1,9 @@
+# Common
+.DS_Store
+.idea/
+.tmp/
+node_modules/
+npm-debug.log
+npm-debug.log.*
+.gitconfig
+dist/

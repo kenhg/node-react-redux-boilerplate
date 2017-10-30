@@ -1,0 +1,29 @@
+{
+  "name": "node-react-redux-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate with Node/Express, React, Redux, Webpack",
+  "main": "index.js",
+  "author": "kenhg (https://github.com/kenhg)",
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js --exec babel-node --watch src/server",
+    "build": "babel src -d dist --presets node6",
+    "serve": "node dist/index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "lodash": "^4.17.4",
+    "morgan": "^1.8.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-node6": "^11.0.0",
+    "nodemon": "^1.12.1"
+  }
+}
