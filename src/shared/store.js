@@ -1,13 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux'
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 
-const store = createStore(
-  reducers,
-  window.__INITIAL_STATE__,
-  compose(
+export default (history) => {
+
+  const middleware = routerMiddleware(history)
+
+  const store = createStore(
+    combineReducers(
+      ...reducers,
+      router: routerReducer,
+    ),
     applyMiddleware(thunk),
     typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' &&
       devtool ? window.devToolsExtension() : f => f,
   )
-)
-
-export default store
+}

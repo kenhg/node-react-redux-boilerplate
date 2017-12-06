@@ -8,3 +8,7 @@ npm-debug.log.*
 .gitconfig
 dist/
 .cache-loader/
+
+# Build Files
+public/dist
+webpack-assets.json

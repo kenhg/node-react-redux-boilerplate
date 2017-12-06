@@ -1,20 +1,15 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const AssetsPlugin = require('assets-webpack-plugin')
 const webpack = require('webpack')
-const assetsPath = path.resolve(__dirname, '../public')
-const host = (process.env.IP || 'localhost')
-const port = parseInt(process.env.PORT) + 1 || 3001
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
 
   entry: './src/client/index.js',
 
   output: {
     filename: '[name].js',
     path: path.join(__dirname, '../public/dist'),
-    publicPath: 'http://' + host + ':' + port + '/public/'
   },
 
   module: {
@@ -27,16 +22,18 @@ module.exports = {
           use: ['css-loader', 'sass-loader'],
         }),
       },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader', options: { limit: 10000, mimetype: 'image/svg+xml' } },
+      { test: /\.(png|jpg|gif|wav|mp3)$/, loader: 'file-loader' },
     ],
   },
 
   plugins: [
     new ExtractTextPlugin('style.css'),
-    new AssetsPlugin({
-      prettyPrint: true,
-      update: true,
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false,
+      },
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
 }

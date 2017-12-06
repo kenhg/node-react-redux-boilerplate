@@ -1,14 +1,23 @@
-var path = require('path')
-var Express = require('express')
-var webpack = require('webpack')
+const path = require('path')
+const Express = require('express')
+const webpack = require('webpack')
 
-var webpackConfig = require('./dev.config')
-var compiler = webpack(webpackConfig)
+const webpackConfig = require('./dev.config')
+// if (process.env.DLL) {
+//   webpackConfig.plugins.push(new webpack.DllReferencePlugin({
+//     context: '.',
+//     manifest: require(path.join(__dirname, '../public/dll/vendor-manifest.json'))
+//   }))
+// }
 
-var host = process.env.IP || 'localhost'
-var port = (parseInt(process.env.PORT) + 1) || 3001
-var serverOptions = {
+const compiler = webpack(webpackConfig)
+
+const host = process.env.IP || 'localhost'
+const port = (parseInt(process.env.PORT) + 1) || 3001
+const serverOptions = {
   contentBase: 'http://' + host + ':' + port,
+  quiet: false,
+  noInfo: false,
   hot: true,
   inline: true,
   lazy: false,
@@ -24,7 +33,7 @@ var serverOptions = {
   },
 }
 
-var app = new Express()
+const app = new Express()
 
 app.use(require('webpack-dev-middleware')(compiler, serverOptions))
 app.use(require('webpack-hot-middleware')(compiler, { log: function() { return null } }))

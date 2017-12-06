@@ -1,5 +1,5 @@
 {
   "main": {
-    "js": "http://localhost:3000/public/bundle.js"
+    "js": "http://localhost:3001/public/main.js"
   }
 }
